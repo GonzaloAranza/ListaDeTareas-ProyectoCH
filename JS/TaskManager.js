@@ -49,7 +49,14 @@ function modo1(taskList){
         
                     switch(taskDesc){
                     case 'fin':
-                        alert('No se introducen  más tareas');
+
+                        if(checkListEmpty(taskList)){
+                            alert("no ingresó tareas")
+                            modo1(taskList)
+                        }
+                        
+                        alert('No se introducen  más tareas, avanzará al menu de tareas a realizar');
+                        console.clear()
                         modo2(taskList)
                          break;                
                         
@@ -112,12 +119,7 @@ function checkListEmpty (taskList){
 
 function modo2(taskList){
     
-        if(checkListEmpty(taskList)){
-            alert("no ingresó tareas")
-            return
-        }
 
-        alert('bienvenido al menu de tareas! aqui podrá indicar las tareas que vaya realizando')
 
         printTaskList(taskList)
         taskNumber = prompt("indique el indice  de la tarea completada")
