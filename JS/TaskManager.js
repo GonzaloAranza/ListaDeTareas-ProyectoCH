@@ -1,5 +1,6 @@
 
 //tipo de dato a usar: lista de {tareas: Done , Description}
+
 let taskList = [];
 
 
@@ -73,6 +74,7 @@ function modo1(taskList){
 
                         let index = prompt("introduce el índice de la tarea que deseas elminar: ")
                             deleteTask(taskList,index-1);
+                            console.clear()
                             printTaskList(taskList);
                              modo1(taskList);
                             break;                       
@@ -134,6 +136,7 @@ function modo2(taskList){
                 
                 default:
                     taskDone(taskList,taskNumber-1)
+                    console.clear()
                     if(checkAllDone(taskList)){
                         printTaskList(taskList)
                         console.log("has terminado todas las tareas, felicitaciones")
@@ -141,7 +144,7 @@ function modo2(taskList){
                     else
                         modo2(taskList)            
             }
-        console.clear()
+        
 }
 
 
