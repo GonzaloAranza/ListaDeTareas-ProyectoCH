@@ -72,7 +72,7 @@ function modo1(taskList){
                             break;
                         }
 
-                        let index = prompt("introduce el índice de la tarea que deseas elminar: ")
+                        let index = prompt("introduce el número de la tarea que deseas elminar: ")
                             deleteTask(taskList,index-1);
                             console.clear()
                             printTaskList(taskList);
@@ -124,13 +124,13 @@ function modo2(taskList){
 
 
         printTaskList(taskList)
-        taskNumber = prompt("indique el indice  de la tarea completada")
+        taskNumber = prompt("indique el numero  de la tarea completada")
     
             
             switch(taskNumber){
                 case 'fin':
+
                 case 'exit':
-                
                 console.log("terminada la ejecución. saludos.")
                 break;
                 
