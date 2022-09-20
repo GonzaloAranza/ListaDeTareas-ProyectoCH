@@ -49,9 +49,9 @@ function createTask(){
         let taskDesc = document.createElement('p')
         let taskCategory = document.createElement('span')
         //asignar clases para el css
-        taskContainer.className = 'taskcontainer'
-        taskDesc.className = 'task'
-        taskCategory.class = 'taskCategory'
+        taskContainer.className = 'taskContainer'
+        taskDesc.className = 'taskDescription'
+        taskCategory.className = 'taskCategory'
         // asignar contenedores hijos
         taskDesc.innerHTML = `${task.description}`
         taskCategory.innerHTML = `${task.category}`
