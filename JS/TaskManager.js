@@ -5,10 +5,11 @@ class Task{
     this.category = category
     }
 };
-
+//referencias al form
 let taskDescription = document.getElementById('task')
 let taskCategory = document.getElementById('category')
 let btnCreate = document.getElementById("btnCrear")
+
 
 //referencias a la fecha
 let anioFecha = document.getElementById('anio')
@@ -23,9 +24,10 @@ mesFecha.innerHTML = new Date().toLocaleString('es', { month: 'long' });
 dia.innerHTML = new Date().toLocaleString('es',{weekday:'long'})
 
 btnCreate.addEventListener('click', function () {
+if(checkvalidTask()){
+    printTaskInWindow(createTask())
+    }
 
-    task = createTask() 
-    printTaskInWindow(task)
 
 })
 
@@ -33,10 +35,9 @@ function createTask(){
 
     let descrip = taskDescription.value
     let category = taskCategory.value
+    
     //chequeo que haya ingresado algo en los input
-    if  (descrip.length===0 && category.length===0){
-        return
-    }
+
 
     return  new Task(descrip,category)
 
@@ -56,7 +57,6 @@ function createTask(){
         taskDesc.innerHTML = `${task.description}`
         taskCategory.innerHTML = `${task.category}`
         //ingresar contenedores hijos al contenedor de tarea
-
         taskContainer.appendChild(taskDesc) 
         taskContainer.appendChild(taskCategory) 
         //ingresar contenedor de tarea a contenedor de tareas
@@ -67,14 +67,19 @@ function createTask(){
 
     taskDescription.onkeydown = (e) => {
         if (e.keyCode === 13) {
-           printTaskInWindow(createTask())
+            btnCreate.click()      
           
         }
     }
 
+
     taskCategory.onkeydown = (e) => {
         if (e.keyCode === 13) {
-           printTaskInWindow(createTask())
-          
+            btnCreate.click()          
         }
     }
+    
+    function checkvalidTask(){
+        return (taskDescription.value.length!==0 && taskCategory.value.length!==0)
+    }
+
