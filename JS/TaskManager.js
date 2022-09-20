@@ -65,3 +65,16 @@ function createTask(){
         
     }
 
+    taskDescription.onkeydown = (e) => {
+        if (e.keyCode === 13) {
+           printTaskInWindow(createTask())
+          
+        }
+    }
+
+    taskCategory.onkeydown = (e) => {
+        if (e.keyCode === 13) {
+           printTaskInWindow(createTask())
+          
+        }
+    }
