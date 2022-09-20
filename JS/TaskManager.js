@@ -11,17 +11,17 @@ let taskCategory = document.getElementById('category')
 let btnCreate = document.getElementById("btnCrear")
 
 //referencias a la fecha
-let anio = document.getElementById('anio')
+let anioFecha = document.getElementById('anio')
+let diaFecha = document.getElementById('diaNumero')
+let mesFecha = document.getElementById('mes')
+let dia = document.getElementById('dia')
 
 //asignando fechas
-anio.innerHTML = new Date().getFullYear()
+anioFecha.innerHTML = new Date().getFullYear()
+diaFecha.innerHTML = new Date().getDate()
+mesFecha.innerHTML = new Date().toLocaleString('es', { month: 'long' });
+dia.innerHTML = new Date().toLocaleString('es',{weekday:'long'})
 
-
-
-
-
-
- 
 btnCreate.addEventListener('click', function () {
 
     task = createTask() 
