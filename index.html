@@ -8,15 +8,64 @@
     <title>TaskManagerAlfa</title>
 </head>
             <body>
+                <main class="container ">
 
+                    <section class="date">
+                        <div class="fechaCompleta">
+
+                                <div id="diaNumero">
+                                        10
+                                </div>
+
+                                <div>
+                                        <div id="mes">
+                                            sept
+                                        </div>
+
+                                        <div id="anio">
+                                            
+                                        </div>
+                                </div>
+
+                        </div>
+
+                        <div id="dia">
+                            Lunes
+                        </div>
+                    </section>
                     
-                    <div>
-                        <span></span>
+                            <form action="">
+                                <div>
+                                <label for="task">Tarea:</label>
+                                <input type="text" id="task">
+                                </div>
 
+                                <div>
+                                 <label for="category">categoria:</label>
+                                <input type="text" id="category">
+                                </div>
+
+                                <input type="button" name="" id="btnCrear" value="CREAR">
+                               
+
+                            </form>
+                    
+                            <div id="tasksContainer">
+
+                                    <div class="taskContainer">
+
+                                        <p class="taskDescription">
+                                        </p>
+
+                                        <span class="taskCategory">
+                                                
+                                        </span>
+
+                                    </div>
                         
-                    </div>
-                    
-
-                <script src="./JS/TaskManager.js"></script>
+                            </div>
+                </main>
+                        <script src="./JS/TaskManager.js"></script>
+            
             </body>
 </html>
