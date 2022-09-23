@@ -51,7 +51,11 @@ function createTask(){
         let taskDesc = document.createElement('p')
         let taskCategory = document.createElement('span')
         //asignar eventos
-        taskContainer.addEventListener('click', markTaskAsDone)
+
+        taskContainer.addEventListener('click', e =>{
+            taskContainer.classList.toggle('done')
+        })
+
         //asignar clases para el css
         taskContainer.className = 'taskContainer'
         taskDesc.className = 'taskDescription'
@@ -81,7 +85,9 @@ function createTask(){
     function checkvalidInput(){
         return (taskDescription.value.length!==0 && taskCategory.value.length!==0)
     }
-    
+
+    /*
+
     const markTaskAsDone = event => {
         if(event.target == '[object HTMLSpanElement]' || event.target == '[object HTMLParagraphElement]')
             event.target.parentNode.classList.toggle('done')
@@ -89,5 +95,4 @@ function createTask(){
            event.target.classList.toggle('done');
     };
 
-
-
+    */
