@@ -24,11 +24,9 @@ mesFecha.innerHTML = new Date().toLocaleString('es', { month: 'long' });
 dia.innerHTML = new Date().toLocaleString('es',{weekday:'long'})
 
 btnCreate.addEventListener('click', function () {
-if(checkvalidTask()){
-    printTaskInWindow(createTask())
+    if(checkvalidTask()){
+        printTaskInWindow(createTask())
     }
-
-
 })
 
 function createTask(){
@@ -36,9 +34,6 @@ function createTask(){
     let descrip = taskDescription.value
     let category = taskCategory.value
     
-    //chequeo que haya ingresado algo en los input
-
-
     return  new Task(descrip,category)
 
 }
@@ -66,18 +61,16 @@ function createTask(){
     }
 
     taskDescription.onkeydown = (e) => {
+
         if (e.keyCode === 13) {
+            e.preventDefault()
             btnCreate.click()      
           
         }
     }
 
 
-    taskCategory.onkeydown = (e) => {
-        if (e.keyCode === 13) {
-            btnCreate.click()          
-        }
-    }
+
     
     function checkvalidTask(){
         return (taskDescription.value.length!==0 && taskCategory.value.length!==0)
