@@ -50,21 +50,24 @@ function createTask(){
         let taskContainer = document.createElement('div')
         let taskDesc = document.createElement('p')
         let taskCategory = document.createElement('span')
+        //asignar eventos
+        taskContainer.addEventListener('click', markTaskAsDone)
         //asignar clases para el css
         taskContainer.className = 'taskContainer'
         taskDesc.className = 'taskDescription'
         taskCategory.className = 'taskCategory'
         // asignar contenedores hijos
-        taskDesc.innerHTML = `${task.description}`
-        taskCategory.innerHTML = `${task.category}`
+        taskDesc.innerHTML = `Tarea: ${task.description}`
+        taskCategory.innerHTML = `Categoria: ${task.category}`
         //ingresar contenedores hijos al contenedor de tarea
         taskContainer.appendChild(taskDesc) 
         taskContainer.appendChild(taskCategory) 
         //ingresar contenedor de tarea a contenedor de tareas
         let tasksContainer = document.getElementById('tasksContainer')
-        tasksContainer.appendChild(taskContainer )       
-        
+        tasksContainer.appendChild(taskContainer )
     }
+
+
 
     taskDescription.onkeydown = (e) => {
 
@@ -75,9 +78,16 @@ function createTask(){
         }
     }
 
-    
     function checkvalidInput(){
         return (taskDescription.value.length!==0 && taskCategory.value.length!==0)
     }
+    
+    const markTaskAsDone = event => {
+        if(event.target == '[object HTMLSpanElement]' || event.target == '[object HTMLParagraphElement]')
+            event.target.parentNode.classList.toggle('done')
+        else
+           event.target.classList.toggle('done');
+    };
+
 
 
