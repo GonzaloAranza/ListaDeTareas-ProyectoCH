@@ -5,6 +5,8 @@ class Task{
     this.category = category
     }
 };
+
+let tasks = []
 //referencias al form
 let taskDescription = document.getElementById('task')
 let taskCategory = document.getElementById('category')
@@ -24,18 +26,22 @@ mesFecha.innerHTML = new Date().toLocaleString('es', { month: 'long' });
 dia.innerHTML = new Date().toLocaleString('es',{weekday:'long'})
 
 btnCreate.addEventListener('click', function () {
-    if(checkvalidTask()){
+    if(checkvalidInput()){
         printTaskInWindow(createTask())
     }
 })
 
 function createTask(){
-
     let descrip = taskDescription.value
     let category = taskCategory.value
-    
-    return  new Task(descrip,category)
 
+    task =new Task(descrip,category)
+   //vamos a pushear la tarea. Esto por el momento no tiene sentido pero serviría para el feature del storage
+
+    tasks.push(task)
+
+    return task
+    
 }
 
     
@@ -69,10 +75,9 @@ function createTask(){
         }
     }
 
-
-
     
-    function checkvalidTask(){
+    function checkvalidInput(){
         return (taskDescription.value.length!==0 && taskCategory.value.length!==0)
     }
+
 
