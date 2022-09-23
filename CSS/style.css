@@ -50,7 +50,7 @@ body {
     grid-template-columns: 80% 20%;
     grid-template-rows: repeat(2,1fr);
     cursor: pointer;
-
+    background-color: #e7e7e7;
 }
 
 .taskDescription{
