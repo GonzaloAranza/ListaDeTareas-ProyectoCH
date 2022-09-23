@@ -44,7 +44,6 @@ body {
 }
 
 .taskContainer {
-    border:solid black 2px;
     border-radius: 10px;
     margin-bottom: 10px; 
     display: grid;
@@ -65,7 +64,7 @@ body {
 }
 
 .done{
-    background-color: rgb(0, 247, 0);
+    background-color: #A5C882
 }
 
 
