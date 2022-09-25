@@ -25,6 +25,9 @@ diaFecha.innerHTML = new Date().getDate()
 mesFecha.innerHTML = new Date().toLocaleString('es', { month: 'long' });
 dia.innerHTML = new Date().toLocaleString('es',{weekday:'long'})
 
+//ordenando select 
+alphabetizeList(taskCategory)
+
 btnCreate.addEventListener('click', function () {
     if(checkvalidInput()){
 
@@ -87,17 +90,28 @@ function createTask(){
         return (taskDescription.value.length!==0 && taskCategory.value.length!==0)
     }
 
-    /*
 
-    const markTaskAsDone = event => {
-        if(event.target == '[object HTMLSpanElement]' || event.target == '[object HTMLParagraphElement]')
-            event.target.parentNode.classList.toggle('done')
-        else
-           event.target.classList.toggle('done');
-    };
-
-    */
 
     function capitalizeFirstLetter(string){
         return string = string.charAt(0).toUpperCase() + string.slice(1)
     }
+
+
+//funcion para ordenar el select alfabeticamente. Con esto ayudamos al usuario a buscar la categoria mas facilmente.
+//haciendolo de esta forma nos olvidamos de tener que ubicarlos ordenados nosotros mismos 
+//el algoritmo es HORRIBLE...en internet se usa mucho jquery para hacerlo u ordenando con burbujeo. Recomiendo rever mas adelante este feature
+    function alphabetizeList(contenedor) {
+            let options = []
+            for(let option of contenedor){
+                   options.push(option.value)
+             }
+
+            options.sort((a,b) => a>b ? 1 : -1)
+
+            for(let i = 0 ; i<options.length;i++){
+                    contenedor[i].value = options[i]
+                    contenedor[i].textContent = options[i]
+            }
+}
+
+
