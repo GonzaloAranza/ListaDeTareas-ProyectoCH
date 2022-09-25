@@ -79,7 +79,7 @@ form{
     grid-column-start: 2;
     grid-row-start: 1;
     grid-row-end: 3;
-    width: 60%;
+    max-width: 50%;
     background: #92c7eb;
     background-image: url("http://res.freestockphotos.biz/pictures/15/15107-illustration-of-a-red-close-button-pv.png");
     background-size: cover;
@@ -94,7 +94,7 @@ form{
 
    .btnDelete:hover
 {
- width: 65%;
+ max-width: 65%;
 }
 
 
