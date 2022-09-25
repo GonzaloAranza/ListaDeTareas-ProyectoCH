@@ -75,10 +75,26 @@ form{
     background-color: #A5C882
 }
 
-.btnDelete{
-    
+.btnDelete {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    width: 60%;
+    background: #92c7eb;
+    background-image: url("http://res.freestockphotos.biz/pictures/15/15107-illustration-of-a-red-close-button-pv.png");
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    border: none;
+    padding: 20px;
+    border-radius: 900px;
+    transition: all 0.5s;
+    cursor: pointer;
+   }
+
+   .btnDelete:hover
+{
+ width: 65%;
 }
-
-
 
 
