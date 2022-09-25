@@ -1,7 +1,7 @@
 class Task{
     constructor(descrip,category){
     this.done = false
-    this.description = descrip
+    this.description = capitalizeFirstLetter(descrip)
     this.category = category
     }
 };
@@ -27,6 +27,7 @@ dia.innerHTML = new Date().toLocaleString('es',{weekday:'long'})
 
 btnCreate.addEventListener('click', function () {
     if(checkvalidInput()){
+
         printTaskInWindow(createTask())
     }
 })
@@ -35,12 +36,7 @@ function createTask(){
     let descrip = taskDescription.value
     let category = taskCategory.value
 
-    task =new Task(descrip,category)
-   //vamos a pushear la tarea. Esto por el momento no tiene sentido pero serviría para el feature del storage
-
-    tasks.push(task)
-
-    return task
+    return new Task(descrip,category)
     
 }
 
@@ -50,25 +46,30 @@ function createTask(){
         let taskContainer = document.createElement('div')
         let taskDesc = document.createElement('p')
         let taskCategory = document.createElement('span')
+        let btnDelete = document.createElement('button')
         //asignar eventos
-
         taskContainer.addEventListener('click', e =>{
             taskContainer.classList.toggle('done')
         })
-
+        btnDelete.addEventListener('click', e => {
+            btnDelete.parentElement.remove()
+        })
         //asignar clases para el css
         taskContainer.className = 'taskContainer'
         taskDesc.className = 'taskDescription'
         taskCategory.className = 'taskCategory'
+        btnDelete.className = 'btnDelete'
         // asignar contenedores hijos
         taskDesc.innerHTML = `Tarea: ${task.description}`
         taskCategory.innerHTML = `Categoria: ${task.category}`
         //ingresar contenedores hijos al contenedor de tarea
         taskContainer.appendChild(taskDesc) 
         taskContainer.appendChild(taskCategory) 
+        taskContainer.appendChild(btnDelete)
         //ingresar contenedor de tarea a contenedor de tareas
         let tasksContainer = document.getElementById('tasksContainer')
         tasksContainer.appendChild(taskContainer )
+        
     }
 
 
@@ -96,3 +97,7 @@ function createTask(){
     };
 
     */
+
+    function capitalizeFirstLetter(string){
+        return string = string.charAt(0).toUpperCase() + string.slice(1)
+    }
