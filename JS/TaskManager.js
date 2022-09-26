@@ -30,7 +30,7 @@ alphabetizeList(taskCategory)
 
 btnCreate.addEventListener('click', function () {
     if(checkvalidInput()){
-
+        taskDescription.value =''
         printTaskInWindow(createTask())
     }
 })
