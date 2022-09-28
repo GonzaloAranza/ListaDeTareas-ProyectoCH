@@ -1,12 +1,13 @@
 class Task{
-    constructor(descrip,category){
-    this.done = false
-    this.description = capitalizeFirstLetter(descrip)
-    this.category = category
+    constructor(descrip,category,taskStatus){
+    this.description = capitalizeFirstLetter(descrip).trim()
+    this.category = category.trim()
+    this.done = taskStatus
     }
 };
 
 let tasks = []
+
 //referencias al form
 let taskDescription = document.getElementById('task')
 let taskCategory = document.getElementById('category')
@@ -29,9 +30,9 @@ dia.innerHTML = new Date().toLocaleString('es',{weekday:'long'})
 alphabetizeList(taskCategory)
 
 btnCreate.addEventListener('click', function () {
-    if(checkvalidInput()){
-        taskDescription.value =''
+    if(checkvalidInput()){     
         printTaskInWindow(createTask())
+        taskDescription.value =''
     }
 })
 
@@ -62,6 +63,8 @@ function createTask(){
         taskDesc.className = 'taskDescription'
         taskCategory.className = 'taskCategory'
         btnDelete.className = 'btnDelete'
+        if(task.done) 
+             taskContainer.classList.add('done') 
         // asignar contenedores hijos
         taskDesc.innerHTML = `Tarea: ${task.description}`
         taskCategory.innerHTML = `Categoria: ${task.category}`
@@ -97,10 +100,9 @@ function createTask(){
     }
 
 
-//funcion para ordenar el select alfabeticamente. Con esto ayudamos al usuario a buscar la categoria mas facilmente.
-//haciendolo de esta forma nos olvidamos de tener que ubicarlos ordenados nosotros mismos 
-//el algoritmo es HORRIBLE...en internet se usa mucho jquery para hacerlo u ordenando con burbujeo. Recomiendo rever mas adelante este feature
-    function alphabetizeList(contenedor) {
+ //haciendolo de esta forma nos olvidamos de tener que ubicarlos ordenados nosotros mismos 
+//Esto es una mala practica, no hay que hacer un array, ordenarlo y volver a crear las options. Buscar ordenamiento de elementos.
+        function alphabetizeList(contenedor) {
             let options = []
             for(let option of contenedor){
                    options.push(option.value)
@@ -113,5 +115,64 @@ function createTask(){
                     contenedor[i].textContent = options[i]
             }
 }
+
+
+
+function createTasksObjectsFromJSON(){
+    for (let i= 0 ; i < localStorage.length;i++){
+        let task = JSON.parse(localStorage.getItem(localStorage.key(i)))
+        tasks.push(task)
+     }
+}
+
+function createTaskContainerFromObject(){
+
+    for (let task of tasks){
+        printTaskInWindow(task)
+    }
+
+}
+
+function clearLocalStorage(){
+    for (let i =0 ; i < localStorage.length ; i++){
+        localStorage.removeItem(localStorage.key(i))
+    }
+}
+
+window.addEventListener('load', function(){
+    createTasksObjectsFromJSON()
+    createTaskContainerFromObject()
+    clearLocalStorage()
+    tasks = []
+})
+
+function createTasksObjectsFromHTML(){
+    let n =0
+    let taskContainers = document.getElementsByClassName('taskContainer')
+
+    for(let i = 0 ;i < taskContainers.length; i++){
+        let tarea = taskContainers[i]
+        let campos = tarea.childNodes
+        let descripcion = campos[0].textContent.replace('Tarea:','')
+        let categoria = campos[1].textContent.replace('Categoria:','')
+        let status = tarea.classList.contains('done') ? true : false
+        tasks.push(new Task(descripcion,categoria,status))
+    }
+}
+
+
+window.addEventListener('beforeunload', function saveTaks(){
+    createTasksObjectsFromHTML()
+    let n = 0
+    for (let task of tasks){
+       
+        localStorage.setItem(`task${n} `,JSON.stringify(task))
+        n++
+    }
+})
+
+
+
+
 
 
