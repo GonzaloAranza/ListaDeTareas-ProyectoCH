@@ -24,7 +24,7 @@ let dia = document.getElementById('dia')
 anioFecha.innerHTML = new Date().getFullYear()
 diaFecha.innerHTML = new Date().getDate()
 mesFecha.innerHTML = new Date().toLocaleString('es', { month: 'long' });
-dia.innerHTML = new Date().toLocaleString('es',{weekday:'long'})
+dia.innerHTML = capitalizeFirstLetter ( new Date().toLocaleString('es',{weekday:'long'}))
 
 //ordenando select 
 alphabetizeList(taskCategory)
@@ -133,21 +133,15 @@ function createTaskContainerFromObject(){
 
 }
 
-function clearLocalStorage(){
-    for (let i =0 ; i < localStorage.length ; i++){
-        localStorage.removeItem(localStorage.key(i))
-    }
-}
 
 window.addEventListener('load', function(){
     createTasksObjectsFromJSON()
     createTaskContainerFromObject()
-    clearLocalStorage()
+    //clearLocalStorage()
     tasks = []
 })
 
 function createTasksObjectsFromHTML(){
-    let n =0
     let taskContainers = document.getElementsByClassName('taskContainer')
 
     for(let i = 0 ;i < taskContainers.length; i++){
@@ -162,10 +156,10 @@ function createTasksObjectsFromHTML(){
 
 
 window.addEventListener('beforeunload', function saveTaks(){
+    localStorage.clear()
     createTasksObjectsFromHTML()
     let n = 0
     for (let task of tasks){
-       
         localStorage.setItem(`task${n} `,JSON.stringify(task))
         n++
     }
