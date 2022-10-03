@@ -85,7 +85,7 @@ select{
     grid-row-end: 3;
     max-width: 50%;
     background: #92c7eb;
-    background-image: url("http://res.freestockphotos.biz/pictures/15/15107-illustration-of-a-red-close-button-pv.png");
+    background-image: url("../assets/images/btnButton.png");
     background-size: cover;
     background-position: center;
     display: inline-block;

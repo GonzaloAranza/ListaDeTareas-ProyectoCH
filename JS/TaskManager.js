@@ -6,7 +6,7 @@ class Task{
     }
 };
 
-let tasks = []
+const tasks = []
 
 //referencias al form
 let taskDescription = document.getElementById('task')
@@ -118,28 +118,24 @@ function createTask(){
 
 
 
+/* Esta funcion esta mal. Se penso porque se iba a guardar objeto por objeto en el localstorage y ahora se guarda un array de objetos.
 function createTasksObjectsFromJSON(){
     for (let i= 0 ; i < localStorage.length;i++){
         let task = JSON.parse(localStorage.getItem(localStorage.key(i)))
         tasks.push(task)
      }
 }
+*/
 
-function createTaskContainerFromObject(){
 
-    for (let task of tasks){
+
+function createTaskContainerFromObjects(array){
+
+    for (let task of array){
         printTaskInWindow(task)
     }
 
 }
-
-
-window.addEventListener('load', function(){
-    createTasksObjectsFromJSON()
-    createTaskContainerFromObject()
-    //clearLocalStorage()
-    tasks = []
-})
 
 function createTasksObjectsFromHTML(){
     let taskContainers = document.getElementsByClassName('taskContainer')
@@ -154,18 +150,33 @@ function createTasksObjectsFromHTML(){
     }
 }
 
-
-window.addEventListener('beforeunload', function saveTaks(){
-    localStorage.clear()
-    createTasksObjectsFromHTML()
-    let n = 0
-    for (let task of tasks){
-        localStorage.setItem(`task${n} `,JSON.stringify(task))
-        n++
+window.addEventListener('load', function(){
+    if (localStorage.length !=0){
+         array = (JSON.parse(localStorage.getItem('tasks')))
+        createTaskContainerFromObjects(array)
     }
+    //clearLocalStorage()
+    tasks.remove()
 })
 
 
+
+
+window.addEventListener('beforeunload', function saveTaks(){
+    createTasksObjectsFromHTML()
+    if(tasks.length !=0 && tasks != null)
+        {
+                localStorage.setItem('tasks',JSON.stringify(tasks)) 
+        }
+}
+)
+
+
+Array.prototype.remove =
+  Array.prototype.remove ||
+  function () {
+    this.splice(0, this.length);
+  };
 
 
 
