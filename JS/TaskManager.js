@@ -1,3 +1,5 @@
+
+
 class Task{
     constructor(descrip,category,taskStatus){
     this.description = capitalizeFirstLetter(descrip).trim()
@@ -20,8 +22,8 @@ let diaFecha = document.getElementById('diaNumero')
 let mesFecha = document.getElementById('mes')
 let dia = document.getElementById('dia')
 
-//asignando fechas
-anioFecha.innerHTML = new Date().getFullYear()
+//asignando fechas. Probando momento js
+anioFecha.innerHTML = moment().format('YYYY')
 diaFecha.innerHTML = new Date().getDate()
 mesFecha.innerHTML = new Date().toLocaleString('es', { month: 'long' });
 dia.innerHTML = capitalizeFirstLetter ( new Date().toLocaleString('es',{weekday:'long'}))
@@ -152,6 +154,7 @@ function createTasksObjectsFromHTML(){
 
 window.addEventListener('load', function(){
     if (localStorage.length !=0){
+        
          array = (JSON.parse(localStorage.getItem('tasks')))
         createTaskContainerFromObjects(array)
     }
@@ -170,6 +173,12 @@ window.addEventListener('beforeunload', function saveTaks(){
         }
 }
 )
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+  .then(response => response.json())
+  .then(json => console.log(json))
+
+
 
 
 Array.prototype.remove =
